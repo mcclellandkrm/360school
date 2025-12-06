@@ -1,0 +1,17 @@
+# Development files
+.claude/
+node_modules/
+.DS_Store
+
+# Backup and old files
+old files/
+
+# Working files
+*.ai
+*.txt.txt
+360school-homepage.html.html
+Graphics and Media/
+
+# System files
+Thumbs.db
+.vscode/
