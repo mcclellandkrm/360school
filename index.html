@@ -13,7 +13,20 @@
     <script src="./js/effects.js" defer></script>
 </head>
 <body>
-    <div id="header-placeholder"></div>
+    <header>
+    <div class="nav-container">
+        <div class="logo">360<span><span class="accent">School</span></span></div>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <section class="hero">
         <div class="hero-content">
@@ -303,6 +316,63 @@
         </div>
     </section>
 
-    <div id="footer-placeholder"></div>
+    <footer>
+    <div class="footer-content">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <p>Immersive 360° virtual tours and bespoke websites for schools across Northern Ireland and the Republic of Ireland.</p>
+                <p>No templates. No annual fees. Just premium digital experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><a href="mailto:karl@360school.co.uk">karl@360school.co.uk</a></p>
+                <p><a href="tel:+447960044486">07960 044 486</a></p>
+                <p>Based in Belfast but cover Northern Ireland and Republic of Ireland</p>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 360School. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<div class="cookie-notice" id="cookieNotice">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            We use essential cookies to make our site work. We'd also like to use analytics cookies to understand how you use our service and make improvements.
+            <a href="/cookies.html">Learn more</a>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn" onclick="acceptCookies()">Accept</button>
+            <button class="cookie-btn secondary" onclick="rejectCookies()">Reject</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkCookieConsent() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (!consent) {
+            document.getElementById('cookieNotice').classList.add('show');
+        }
+    }
+
+    function acceptCookies() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        document.getElementById('cookieNotice').classList.remove('show');
+    }
+
+    function rejectCookies() {
+        localStorage.setItem('cookieConsent', 'rejected');
+        document.getElementById('cookieNotice').classList.remove('show');
+    }
+
+    window.addEventListener('load', checkCookieConsent);
+</script>
 </body>
 </html>
