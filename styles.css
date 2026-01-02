@@ -180,81 +180,81 @@ nav a:hover::after {
 
 .btn {
     display: inline-block;
-    padding: 1rem 2.5rem;
-    background: rgba(0, 0, 0, 0.08);
-    color: #000;
+    padding: 1.1rem 2.8rem;
+    background: #000;
+    color: #fff;
     text-decoration: none;
     font-size: 1.05rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
-    transition: all 0.5s ease;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    border: 2px solid #000;
     cursor: pointer;
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
 .btn:hover {
-    background: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.2);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .btn-orange {
-    background: rgba(255, 173, 0, 0.15);
+    background: #FFAD00;
     color: #000;
-    border-color: rgba(255, 173, 0, 0.3);
+    border-color: #FFAD00;
 }
 
 .btn-orange:hover {
-    background: rgba(255, 173, 0, 0.25);
-    border-color: rgba(255, 173, 0, 0.5);
-    box-shadow: 0 8px 24px rgba(255, 173, 0, 0.12);
+    background: #FF9E00;
+    border-color: #FF9E00;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 173, 0, 0.3);
 }
 
 .btn-outline {
     background: transparent;
     color: #000;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid #000;
 }
 
 .btn-outline:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.3);
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Hero-specific button overrides for dark background */
 .hero .btn {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #fff;
+    color: #000;
+    border-color: #fff;
 }
 
 .hero .btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: #f5f5f5;
 }
 
 .hero .btn-orange {
-    background: rgba(255, 173, 0, 0.25);
-    color: #fff;
-    border-color: rgba(255, 173, 0, 0.5);
+    background: #FFAD00;
+    color: #000;
+    border-color: #FFAD00;
 }
 
 .hero .btn-orange:hover {
-    background: rgba(255, 173, 0, 0.4);
-    border-color: rgba(255, 173, 0, 0.7);
+    background: #FF9E00;
+    border-color: #FF9E00;
 }
 
 .hero .btn-outline {
     background: transparent;
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid #fff;
 }
 
 .hero .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.7);
+    background: #fff;
+    color: #000;
 }
 
 .scroll-indicator {
@@ -550,15 +550,47 @@ nav a:hover::after {
 
 .portfolio-item {
     background: #111;
-    padding: 3rem;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     aspect-ratio: 4/3;
     display: flex;
     flex-direction: column;
+    min-height: 450px;
+}
+
+.portfolio-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: all 0.6s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+.portfolio-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-end;
-    min-height: 400px;
+    min-height: 60%;
 }
 
 .portfolio-item::before {
@@ -734,20 +766,48 @@ nav a:hover::after {
 }
 
 .pricing-card.featured {
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
     transform: scale(1.05);
     z-index: 1;
+    border-color: #FFAD00;
 }
 
-.pricing-card.featured .pricing-tier,
-.pricing-card.featured .pricing-period,
-.pricing-card.featured ul,
+.pricing-card.featured .pricing-tier {
+    color: #000;
+    font-weight: 600;
+}
+
+.pricing-card.featured .pricing-period {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-card.featured ul {
+    color: #000;
+}
+
 .pricing-card.featured h3 {
+    color: #000;
+}
+
+.pricing-card.featured li::before {
+    color: #000;
+    opacity: 1;
+}
+
+.pricing-card.featured .btn {
+    background: #000;
+    color: #FFAD00;
+    border-color: #000;
+    font-weight: 600;
+}
+
+.pricing-card.featured .btn:hover {
+    background: #1a1a1a;
     color: #fff;
 }
 
 .pricing-card.featured::before {
-    background: #FFAD00;
+    background: #000;
     height: 4px;
 }
 
@@ -820,6 +880,17 @@ nav a:hover::after {
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
     margin-top: 4rem;
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1);
 }
 
 .stat-card {
@@ -942,15 +1013,15 @@ nav a:hover::after {
 
 .faq-item {
     background: #fff;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 12px;
     border: 1px solid rgba(0, 0, 0, 0.06);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
 .faq-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     border-color: rgba(255, 173, 0, 0.2);
 }
 
@@ -958,8 +1029,36 @@ nav a:hover::after {
     font-size: 1.2rem;
     font-weight: 500;
     color: #000;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     line-height: 1.4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #FFAD00;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding-top: 1rem;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
 }
 
 .faq-item p {
@@ -967,6 +1066,7 @@ nav a:hover::after {
     line-height: 1.8;
     color: #666;
     font-weight: 200;
+    margin-bottom: 0;
 }
 
 .faq-item strong {
@@ -976,8 +1076,8 @@ nav a:hover::after {
 
 /* CTA Section */
 .cta-section {
-    background: #000;
-    color: #fff;
+    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
+    color: #000;
     text-align: center;
 }
 
@@ -987,18 +1087,22 @@ nav a:hover::after {
     letter-spacing: -2px;
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    color: #000;
 }
 
 .cta-section h2 .accent {
-    color: #FFAD00;
+    color: #000;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0.3);
+    text-underline-offset: 8px;
 }
 
 .cta-section p {
-    font-size: 1.25rem;
-    color: #aaa;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    max-width: 600px;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 3rem;
+    font-weight: 400;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1006,23 +1110,47 @@ nav a:hover::after {
 .cta-features {
     display: flex;
     justify-content: center;
-    gap: 3rem;
-    margin-bottom: 3rem;
+    gap: 4rem;
+    margin-bottom: 3.5rem;
     flex-wrap: wrap;
 }
 
 .cta-feature {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #999;
-    font-size: 0.95rem;
-    font-weight: 200;
+    gap: 0.8rem;
+    color: #000;
+    font-size: 1.15rem;
+    font-weight: 500;
 }
 
 .cta-icon {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cta-section .btn {
+    background: #000;
     color: #FFAD00;
-    font-size: 1.2rem;
+    border-color: #000;
+    font-weight: 700;
+}
+
+.cta-section .btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.cta-section .btn-outline {
+    background: transparent;
+    color: #000;
+    border-color: #000;
+}
+
+.cta-section .btn-outline:hover {
+    background: #000;
+    color: #FFAD00;
 }
 
 @media (max-width: 1024px) {
