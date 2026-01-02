@@ -11,6 +11,7 @@ body {
     overflow-x: hidden;
     background: #fff;
     font-weight: 200;
+    font-size: 18px;
 }
 
 @keyframes fadeIn {
@@ -69,7 +70,7 @@ nav ul {
 nav a {
     text-decoration: none;
     color: #000;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.3px;
     transition: color 0.5s ease;
@@ -130,7 +131,7 @@ nav a:hover::after {
     right: 0;
     bottom: 0;
     background: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1920&q=80&auto=format&fit=crop') center/cover;
-    opacity: 0.08;
+    opacity: 0.25;
     z-index: 0;
 }
 
@@ -162,7 +163,7 @@ nav a:hover::after {
 }
 
 .hero p {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     color: #ccc;
     margin-bottom: 3rem;
     font-weight: 200;
@@ -183,7 +184,7 @@ nav a:hover::after {
     background: rgba(0, 0, 0, 0.08);
     color: #000;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 500;
     letter-spacing: 0.5px;
     transition: all 0.5s ease;
@@ -220,6 +221,40 @@ nav a:hover::after {
 .btn-outline:hover {
     background: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Hero-specific button overrides for dark background */
+.hero .btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero .btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn-orange {
+    background: rgba(255, 173, 0, 0.25);
+    color: #fff;
+    border-color: rgba(255, 173, 0, 0.5);
+}
+
+.hero .btn-orange:hover {
+    background: rgba(255, 173, 0, 0.4);
+    border-color: rgba(255, 173, 0, 0.7);
+}
+
+.hero .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.7);
 }
 
 .scroll-indicator {
@@ -259,7 +294,7 @@ nav a:hover::after {
 }
 
 .section-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     color: #666;
     font-weight: 300;
     margin-bottom: 4rem;
@@ -288,7 +323,7 @@ nav a:hover::after {
 
 .problem-list {
     list-style: none;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 2.2;
     color: #555;
     font-weight: 300;
@@ -316,7 +351,7 @@ nav a:hover::after {
 
 .solution-list {
     list-style: none;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 2.2;
     color: #555;
     font-weight: 300;
@@ -387,7 +422,7 @@ nav a:hover::after {
 }
 
 .step-description {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: #666;
     line-height: 1.6;
     font-weight: 300;
@@ -399,7 +434,7 @@ nav a:hover::after {
 }
 
 .services-intro {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #666;
     max-width: 700px;
     margin-bottom: 4rem;
@@ -488,7 +523,7 @@ nav a:hover::after {
     color: #666;
     font-weight: 300;
     line-height: 1.8;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
 }
 
 /* Portfolio Section */
@@ -596,9 +631,9 @@ nav a:hover::after {
     color: #999;
     font-weight: 300;
     margin-bottom: 1.5rem;
+    font-size: 1.05rem;
     position: relative;
     z-index: 1;
-    font-size: 0.95rem;
 }
 
 .portfolio-link {
@@ -634,7 +669,7 @@ nav a:hover::after {
 }
 
 .pricing-intro {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #666;
     max-width: 700px;
     margin-bottom: 4rem;
@@ -748,7 +783,7 @@ nav a:hover::after {
     margin-bottom: 2.5rem;
     line-height: 2;
     color: #666;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 300;
 }
 
@@ -818,7 +853,7 @@ nav a:hover::after {
 }
 
 .stat-card p {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     color: #999;
     font-weight: 200;
     line-height: 1.6;
@@ -864,7 +899,7 @@ nav a:hover::after {
 }
 
 .testimonial-text {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     color: #555;
     font-weight: 200;
@@ -928,7 +963,7 @@ nav a:hover::after {
 }
 
 .faq-item p {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: #666;
     font-weight: 200;
@@ -959,7 +994,7 @@ nav a:hover::after {
 }
 
 .cta-section p {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: #aaa;
     margin-bottom: 2.5rem;
     font-weight: 300;

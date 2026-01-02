@@ -3,7 +3,7 @@ footer {
     background: #000;
     color: #999;
     padding: 4rem 2rem 2rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .footer-content {
@@ -86,7 +86,7 @@ footer a:hover {
     padding: 1.5rem 2rem;
     z-index: 999;
     display: none;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 300;
 }
 
@@ -131,7 +131,7 @@ footer a:hover {
     border: 1px solid rgba(255, 173, 0, 0.3);
     color: #000;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.4px;
     cursor: pointer;
