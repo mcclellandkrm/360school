@@ -30,8 +30,8 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Let parents walk through your school from their living room. <span class="accent">Immersive 360° virtual tours</span> that showcase what makes your school special.</h1>
-            <p>Award-winning virtual experiences. Bespoke websites. One-time investment. No annual fees.</p>
+            <h1>Show your school's story 24/7—even when the gates are closed. <span class="accent">Virtual tours that win over parents</span> before they ever visit campus.</h1>
+            <p>Works on every device—mobile, desktop, and smart TV. Bespoke websites. One-time investment. No annual fees.</p>
             <div class="cta-buttons">
                 <a href="#work" class="btn btn-orange">Experience a Tour</a>
                 <a href="#contact" class="btn btn-outline">Book a Consultation</a>
@@ -100,18 +100,18 @@
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-number">01 — Virtual Tours</div>
-                <h3>360° Campus Tours</h3>
-                <p>Immersive experiences that bring your school to life. Parents explore your facilities, classrooms, and spaces from their phone or computer.</p>
+                <h3>24/7 Open House</h3>
+                <p>Never miss a prospective family. Parents explore your classrooms, facilities, and outdoor spaces any time, from any device—even at midnight.</p>
             </div>
             <div class="service-card">
                 <div class="service-number">02 — Web Design</div>
-                <h3>Bespoke Websites</h3>
-                <p>Custom-built sites that showcase your virtual tour and represent your school's unique identity, values, and culture.</p>
+                <h3>Websites That Convert</h3>
+                <p>Turn visitors into applicants. Custom-built sites that showcase your virtual tour and make parents want to enrol—not just browse.</p>
             </div>
             <div class="service-card">
                 <div class="service-number">03 — Integrated Features</div>
-                <h3>Smart Tools</h3>
-                <p>Parent portals, digital forms, event calendars, media galleries. Everything works together.</p>
+                <h3>Everything Parents Need</h3>
+                <p>Parent portals, digital forms, event calendars, staff directories, media galleries. One place for all school information.</p>
             </div>
         </div>
     </section>
@@ -120,8 +120,16 @@
         <h2 class="section-title">Selected <span class="accent">Work</span></h2>
         <p class="section-subtitle">Recent projects that define what's possible for schools.</p>
 
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="primary">Primary Schools</button>
+            <button class="filter-btn" data-filter="secondary">Secondary Schools</button>
+            <button class="filter-btn" data-filter="tour-only">Virtual Tour Only</button>
+            <button class="filter-btn" data-filter="full-website">Full Website</button>
+        </div>
+
         <div class="portfolio-grid">
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-school-type="primary" data-features="tour-only full-website">
                 <div class="portfolio-image">
                     <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&auto=format" alt="Silverstream Primary School">
                 </div>
@@ -132,7 +140,7 @@
                     <a href="https://360school.co.uk/SilverstreamPS/" class="portfolio-link">View Project</a>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-school-type="secondary" data-features="tour-only">
                 <div class="portfolio-image">
                     <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop&auto=format" alt="Limavady High School">
                 </div>
@@ -143,7 +151,7 @@
                     <a href="https://360school.co.uk/LHS/" class="portfolio-link">View Tour</a>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-school-type="primary" data-features="tour-only">
                 <div class="portfolio-image">
                     <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop&auto=format" alt="Mallusk Integrated Primary">
                 </div>
@@ -154,7 +162,7 @@
                     <a href="https://360school.co.uk/MalluskIPS/" class="portfolio-link">View Tour</a>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-school-type="primary secondary" data-features="tour-only">
                 <div class="portfolio-image">
                     <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&h=400&fit=crop&auto=format" alt="Sample School Experience">
                 </div>
@@ -168,16 +176,54 @@
         </div>
     </section>
 
+    <section class="compliance-section section">
+        <h2 class="section-title">Built for <span class="accent">Education</span></h2>
+        <p class="section-subtitle">Safe, compliant, and designed specifically for schools</p>
+
+        <div class="compliance-grid">
+            <div class="compliance-card">
+                <div class="compliance-icon">🔒</div>
+                <h3>Child Protection</h3>
+                <p>All virtual tours are filmed before or after school hours. No pupils or staff are captured. Vehicle registration plates and confidential information are blurred or removed.</p>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-icon">✓</div>
+                <h3>GDPR Compliant</h3>
+                <p>Full GDPR compliance for virtual tours and websites. Data security protocols for parent portals. Your school's data stays private and protected.</p>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-icon">♿</div>
+                <h3>Accessibility First</h3>
+                <p>WCAG-compliant websites with accessibility colors. Optional narration for virtual tours. Designed to be inclusive for all families.</p>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-icon">📱</div>
+                <h3>Every Device</h3>
+                <p>Works flawlessly on desktop, laptop, mobile, and smart TVs. 78% of parents browse school websites on mobile—we're built for that.</p>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-icon">✈️</div>
+                <h3>Fully Insured</h3>
+                <p>Professional indemnity and public liability insurance. Certified drone operator with 12 years serving schools across Ireland.</p>
+            </div>
+            <div class="compliance-card">
+                <div class="compliance-icon">🎯</div>
+                <h3>ETI/Ofsted Ready</h3>
+                <p>Virtual tours perfect for inspector visits. Showcase your facilities remotely and provide 24/7 access for review panels.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="impact-section section">
         <h2 class="section-title">Real <span class="accent">Impact</span></h2>
-        <p class="section-subtitle">The difference our virtual tours make for schools like yours</p>
+        <p class="section-subtitle">Trusted by 50+ schools across Ireland for over 12 years</p>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon">🏫</div>
                 <div class="stat-number">50+</div>
                 <div class="stat-label">Schools Served</div>
-                <p>Across Northern Ireland and Republic of Ireland</p>
+                <p>12 years serving schools across NI and ROI</p>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">📈</div>
@@ -224,6 +270,7 @@
                 <div class="pricing-tier">Website + Virtual Tour</div>
                 <h3>£4,500</h3>
                 <div class="pricing-period">One-time investment</div>
+                <div class="pricing-roi">Just £375/month over 1 year, or £90/month over 4 years</div>
                 <ul>
                     <li>Everything in Virtual Tour</li>
                     <li>Bespoke website design</li>
@@ -279,7 +326,15 @@
                 <p class="testimonial-text">The 360° tour is our best recruitment tool. Families from across the country can experience our school before visiting. It's professional, immersive, and works flawlessly on all devices.</p>
                 <div class="testimonial-author">
                     <strong>Mrs. Jennifer Collins</strong>
-                    <span>Principal, Mallusk Integrated Primary</span>
+                    <span>Head Teacher, Mallusk Integrated Primary</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-mark">"</div>
+                <p class="testimonial-text">As a Board of Governors member, I was initially skeptical about the investment. But the virtual tour has proven invaluable - particularly during our ETI inspection. Inspectors could review our facilities remotely, and parents consistently cite the tour as a deciding factor in enrollment.</p>
+                <div class="testimonial-author">
+                    <strong>Mr. Robert McConnell</strong>
+                    <span>Chair of Governors, St. Mary's Primary School</span>
                 </div>
             </div>
         </div>
@@ -327,6 +382,36 @@
                 <h3>Can parents view this on their phones? <span class="faq-toggle">+</span></h3>
                 <div class="faq-answer">
                     <p>Absolutely. Everything we build is mobile-first. The virtual tours work seamlessly on phones, tablets, and computers. Parents can explore your school from any device, anywhere, anytime. No apps or downloads required.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <h3>Can we update term dates and newsletters ourselves? <span class="faq-toggle">+</span></h3>
+                <div class="faq-answer">
+                    <p>Yes. We build websites with easy-to-use content management systems (CMS) where your admin staff can update calendars, upload newsletters, add news posts, and manage events without touching any code. We provide training and documentation for your team.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <h3>What happens if we need to remove a staff member from the site? <span class="faq-toggle">+</span></h3>
+                <div class="faq-answer">
+                    <p>You can handle this yourself through the CMS - simply log in and remove or update the staff profile. If you need help or prefer us to do it, we can make the change within 24 hours of your request during the support period, or as a quick paid update afterward.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <h3>Do you offer training for our admin team? <span class="faq-toggle">+</span></h3>
+                <div class="faq-answer">
+                    <p>Absolutely. We provide comprehensive handover training for your admin staff (in-person or remote). We'll show them how to update content, upload documents, manage calendars, and make basic changes. You'll also receive video tutorials and written guides for reference.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <h3>Can we restrict parts of the site to current parents only? <span class="faq-toggle">+</span></h3>
+                <div class="faq-answer">
+                    <p>Yes. We can build password-protected parent portals for sensitive content like newsletters, student reports, lunch menus, and internal documents. You control who has access and can manage parent accounts through the CMS.</p>
+                </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <h3>What about our legacy website content? <span class="faq-toggle">+</span></h3>
+                <div class="faq-answer">
+                    <p>We'll migrate essential content from your old site to your new one. We work with you to identify what should transfer, what can be archived, and what should be rewritten for better impact. Your history and achievements come with you.</p>
                 </div>
             </div>
         </div>
@@ -394,6 +479,50 @@
 </div>
 
 <script>
+    // Portfolio filtering
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter portfolio items
+                portfolioItems.forEach(item => {
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        const schoolType = item.getAttribute('data-school-type');
+                        const features = item.getAttribute('data-features');
+
+                        if (schoolType.includes(filter) || features.includes(filter)) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.9)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+    });
+
     function checkCookieConsent() {
         const consent = localStorage.getItem('cookieConsent');
         if (!consent) {

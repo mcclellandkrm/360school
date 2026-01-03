@@ -4,6 +4,24 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Typography Scale - All sizes standardized */
+    --text-xs: 0.85rem;         /* 15px - Small labels, metadata */
+    --text-sm: 1rem;            /* 18px - Footer, small UI text */
+    --text-base: 1.3rem;        /* 23px - ALL body text, lists, descriptions */
+    --text-md: 1.4rem;          /* 25px - Section subtitles, larger paragraphs */
+    --text-lg: 1.8rem;          /* 32px - Small headings (h3) */
+    --text-xl: 3.5rem;          /* 63px - Section titles (h2) */
+    --text-2xl: 4.5rem;         /* 81px - Hero title (h1) */
+
+    /* Colors */
+    --color-primary: #FFAD00;
+    --color-black: #000;
+    --color-white: #fff;
+    --color-text: #666;
+    --color-text-light: #999;
+}
+
 body {
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     color: #000;
@@ -163,7 +181,7 @@ nav a:hover::after {
 }
 
 .hero p {
-    font-size: 1.4rem;
+    font-size: var(--text-md);
     color: #ccc;
     margin-bottom: 3rem;
     font-weight: 200;
@@ -294,8 +312,8 @@ nav a:hover::after {
 }
 
 .section-subtitle {
-    font-size: 1.3rem;
-    color: #666;
+    font-size: var(--text-base);
+    color: var(--color-text);
     font-weight: 300;
     margin-bottom: 4rem;
     max-width: 700px;
@@ -323,7 +341,7 @@ nav a:hover::after {
 
 .problem-list {
     list-style: none;
-    font-size: 1.15rem;
+    font-size: var(--text-base);
     line-height: 2.2;
     color: #555;
     font-weight: 300;
@@ -351,7 +369,7 @@ nav a:hover::after {
 
 .solution-list {
     list-style: none;
-    font-size: 1.15rem;
+    font-size: var(--text-base);
     line-height: 2.2;
     color: #555;
     font-weight: 300;
@@ -422,8 +440,8 @@ nav a:hover::after {
 }
 
 .step-description {
-    font-size: 1.1rem;
-    color: #666;
+    font-size: var(--text-base);
+    color: var(--color-text);
     line-height: 1.6;
     font-weight: 300;
 }
@@ -434,8 +452,8 @@ nav a:hover::after {
 }
 
 .services-intro {
-    font-size: 1.25rem;
-    color: #666;
+    font-size: var(--text-md);
+    color: var(--color-text);
     max-width: 700px;
     margin-bottom: 4rem;
     line-height: 1.8;
@@ -513,17 +531,17 @@ nav a:hover::after {
 }
 
 .service-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
     letter-spacing: -0.5px;
     margin-bottom: 1rem;
 }
 
 .service-card p {
-    color: #666;
+    color: var(--color-text);
     font-weight: 300;
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: var(--text-base);
 }
 
 /* Portfolio Section */
@@ -540,6 +558,41 @@ nav a:hover::after {
     color: #999;
 }
 
+/* Portfolio Filters */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 173, 0, 0.1);
+    border-color: rgba(255, 173, 0, 0.3);
+    color: #FFAD00;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
+    border-color: #FFAD00;
+    color: #000;
+    font-weight: 500;
+}
+
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -550,13 +603,15 @@ nav a:hover::after {
 
 .portfolio-item {
     background: #111;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
     aspect-ratio: 4/3;
     display: flex;
     flex-direction: column;
     min-height: 450px;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .portfolio-image {
@@ -660,10 +715,10 @@ nav a:hover::after {
 }
 
 .portfolio-item p {
-    color: #999;
+    color: var(--color-text-light);
     font-weight: 300;
     margin-bottom: 1.5rem;
-    font-size: 1.05rem;
+    font-size: var(--text-base);
     position: relative;
     z-index: 1;
 }
@@ -695,14 +750,72 @@ nav a:hover::after {
     transform: translateX(4px);
 }
 
+/* Compliance Section */
+.compliance-section {
+    background: #f9f9f9;
+}
+
+.compliance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.compliance-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.compliance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(255, 173, 0, 0.12);
+    border-color: rgba(255, 173, 0, 0.2);
+}
+
+.compliance-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.compliance-card h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #000;
+}
+
+.compliance-card p {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+@media (max-width: 968px) {
+    .compliance-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .compliance-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Pricing Section */
 .pricing-section {
     background: #f9f9f9;
 }
 
 .pricing-intro {
-    font-size: 1.25rem;
-    color: #666;
+    font-size: var(--text-md);
+    color: var(--color-text);
     max-width: 700px;
     margin-bottom: 4rem;
     line-height: 1.8;
@@ -834,16 +947,28 @@ nav a:hover::after {
 .pricing-period {
     color: #999;
     font-size: 0.9rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     font-weight: 300;
+}
+
+.pricing-roi {
+    color: #FFAD00;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.pricing-card.featured .pricing-roi {
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .pricing-card ul {
     list-style: none;
     margin-bottom: 2.5rem;
     line-height: 2;
-    color: #666;
-    font-size: 1.05rem;
+    color: var(--color-text);
+    font-size: var(--text-base);
     font-weight: 300;
 }
 
@@ -917,15 +1042,15 @@ nav a:hover::after {
 }
 
 .stat-label {
-    font-size: 1.1rem;
+    font-size: var(--text-base);
     font-weight: 500;
-    color: #fff;
+    color: var(--color-white);
     margin-bottom: 1rem;
 }
 
 .stat-card p {
-    font-size: 1.05rem;
-    color: #999;
+    font-size: var(--text-base);
+    color: var(--color-text-light);
     font-weight: 200;
     line-height: 1.6;
 }
@@ -938,7 +1063,7 @@ nav a:hover::after {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
     margin-top: 4rem;
 }
@@ -970,7 +1095,7 @@ nav a:hover::after {
 }
 
 .testimonial-text {
-    font-size: 1.15rem;
+    font-size: var(--text-base);
     line-height: 1.8;
     color: #555;
     font-weight: 200;
@@ -1026,7 +1151,7 @@ nav a:hover::after {
 }
 
 .faq-item h3 {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 500;
     color: #000;
     margin-bottom: 0;
@@ -1062,9 +1187,9 @@ nav a:hover::after {
 }
 
 .faq-item p {
-    font-size: 1.1rem;
+    font-size: var(--text-base);
     line-height: 1.8;
-    color: #666;
+    color: var(--color-text);
     font-weight: 200;
     margin-bottom: 0;
 }
