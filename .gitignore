@@ -1,10 +1,8 @@
 # Development files
 .claude/
 node_modules/
+package-lock.json
 .DS_Store
-
-# Backup and old files
-old files/
 
 # Working files
 *.ai

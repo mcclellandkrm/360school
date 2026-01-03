@@ -1,0 +1,19 @@
+{
+  "name": "360school",
+  "version": "1.0.0",
+  "description": "360School - Static Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 8000",
+    "start": "npx http-server -p 8000"
+  },
+  "keywords": [
+    "360school",
+    "education"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
