@@ -200,3 +200,121 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Portfolio Carousel Controls
+document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.portfolio-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    let currentScroll = 0;
+    const scrollAmount = 520; // card width (500px) + gap (20px)
+
+    function updateCarousel(direction) {
+        // Pause animation
+        track.style.animationPlayState = 'paused';
+
+        // Calculate new scroll position
+        currentScroll += direction * scrollAmount;
+
+        // Apply transform
+        track.style.transform = `translateX(${currentScroll}px)`;
+
+        // Resume animation after a delay
+        setTimeout(() => {
+            track.style.animationPlayState = 'running';
+            track.style.transform = '';
+            currentScroll = 0;
+        }, 300);
+    }
+
+    prevBtn.addEventListener('click', () => updateCarousel(1));
+    nextBtn.addEventListener('click', () => updateCarousel(-1));
+});
+
+// Contact Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const newsletterForm = document.getElementById('newsletterForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formStatus = document.getElementById('formStatus');
+            const submitBtn = this.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+
+            // Update button state
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.';
+                    formStatus.className = 'form-status success';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formStatus.textContent = 'Sorry, there was an error sending your message. Please try emailing us directly at karl@360school.co.uk';
+                formStatus.className = 'form-status error';
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('.btn');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
+
+            try {
+                const formData = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    submitBtn.textContent = 'Subscribed!';
+                    this.reset();
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            } catch (error) {
+                submitBtn.textContent = 'Error - Try Again';
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
+});
