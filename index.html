@@ -15,9 +15,15 @@
     <script src="./js/effects.js" defer></script>
 </head>
 <body>
+    <div class="urgency-banner">
+        <p>EA Connect results are out. Schools already planning for 2027 intake are booking now — spaces are limited. <a href="#contact">Get in touch</a></p>
+    </div>
+
     <header>
     <div class="nav-container">
-        <div class="logo">360<span><span class="accent">School</span></span></div>
+        <a href="/" class="logo">
+            <img src="./images/360school-logo-1.svg" alt="360School" class="logo-img">
+        </a>
         <nav>
             <ul>
                 <li><a href="#services">Services</a></li>
@@ -32,8 +38,8 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Show your school's story 24/7—even when the gates are closed. <span class="accent">Virtual tours that win over parents</span> before they ever visit campus.</h1>
-            <p>Works on every device—mobile, desktop, and smart TV. Bespoke websites. One-time investment. No annual fees.</p>
+            <h1>Open days last one evening. <span class="accent">Your virtual tour never closes.</span></h1>
+            <p>P1 or Year 8 — every family can explore your school before they ever set foot in it.</p>
             <div class="cta-buttons">
                 <a href="#work" class="btn btn-orange">Experience a Tour</a>
                 <a href="#contact" class="btn btn-outline">Book a Consultation</a>
@@ -42,18 +48,33 @@
         <div class="scroll-indicator" onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' })">SCROLL</div>
     </section>
 
+    <section class="trusted-by-section">
+        <h2 class="section-title">Trusted by <span class="accent">Schools</span></h2>
+        <div class="logo-strip">
+            <!-- Replace each placeholder with <img src="./images/[school-logo].svg" alt="[School Name]"> when SVGs are ready -->
+            <div class="school-logo-placeholder">Antrim Grammar</div>
+            <div class="school-logo-placeholder">Limavady High School</div>
+            <div class="school-logo-placeholder">Carrickfergus Grammar</div>
+            <div class="school-logo-placeholder">Larne Grammar</div>
+            <div class="school-logo-placeholder">Ballyclare High School</div>
+            <div class="school-logo-placeholder">Cranmore Primary</div>
+            <div class="school-logo-placeholder">Mallusk IPS</div>
+            <div class="school-logo-placeholder">Silverstream Primary</div>
+        </div>
+    </section>
+
     <section id="about" class="about-section section">
         <div class="about-content">
             <div class="about-text">
                 <h2 class="section-title">Why I Built This <span class="accent">Differently</span></h2>
 
-                <p>After 12 years working with schools, I kept hearing the same story: web companies locking them into expensive annual contracts, charging for features that never materialized, and holding their websites hostage.</p>
+                <p>When schools lost their open days during lockdown, they had no way to show prospective families what made them different. It forced a lot of hands. Remote working and video calls had already changed how people made decisions, and schools quickly found that a virtual tour could do something a Thursday evening open day never could: reach every family, on their schedule, from anywhere.</p>
 
-                <p class="about-highlight">Schools deserve better.</p>
+                <p class="about-highlight">What started as a necessity has become something schools actively compete on.</p>
 
-                <p>360 School works on a simple principle: one payment, full ownership, no recurring fees. You get professional virtual tours and websites built exactly as promised—then they're yours to keep forever.</p>
+                <p>The ones with a tour are showing parents their science labs, sports facilities, pastoral spaces and history. The ones without are hoping a PDF prospectus does the job.</p>
 
-                <p>No vendor lock-in. No surprises. Just honest work for schools across Ireland.</p>
+                <p>After 12 years working with schools, I kept hearing a second story too: web companies locking them into expensive annual contracts, charging for features that never arrived, and holding their websites hostage. So 360 School works on one simple principle — one payment, full ownership, no recurring fees. You get exactly what was promised, then it is yours to keep.</p>
 
                 <p class="about-signature">— Karl McClelland<br><span>Founder, 360 School</span></p>
             </div>
@@ -196,6 +217,42 @@
         </div>
     </section>
 
+    <!-- CASE STUDY SECTION — Limavady High School -->
+    <!-- Replace placeholder stats and quote with real data from the 360Spaces case study -->
+    <section class="case-study-section section">
+        <div class="case-study-label">Case Study</div>
+        <div class="case-study-content">
+            <div class="case-study-text">
+                <h2 class="section-title">Limavady High School — <span class="accent">UK Secondary School of the Year</span></h2>
+                <p class="case-study-intro">[2–3 sentence intro about the project — what the school needed, what was delivered. Pull from the 360Spaces case study and adapt.]</p>
+                <div class="case-study-stats">
+                    <div class="case-stat">
+                        <div class="case-stat-number">[X]%</div>
+                        <div class="case-stat-label">[Stat label — e.g. increase in virtual visits]</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="case-stat-number">[X]%</div>
+                        <div class="case-stat-label">[Stat label]</div>
+                    </div>
+                    <div class="case-stat">
+                        <div class="case-stat-number">[X]</div>
+                        <div class="case-stat-label">[Stat label]</div>
+                    </div>
+                </div>
+                <!-- PLACEHOLDER — replace with real quote from Paul at LHS -->
+                <blockquote class="case-study-quote">
+                    <p>"[Real quote from Paul at Limavady High School — to be added]"</p>
+                    <cite>— [Name], [Title], Limavady High School</cite>
+                </blockquote>
+                <a href="https://360school.co.uk/LHS/" class="btn btn-orange" target="_blank">View the Tour</a>
+            </div>
+            <div class="case-study-image">
+                <!-- PLACEHOLDER — replace with actual photo from LHS shoot -->
+                <div class="case-study-img-placeholder">LHS photo to be added</div>
+            </div>
+        </div>
+    </section>
+
     <section class="compliance-section section">
         <h2 class="section-title">Built for <span class="accent">Education</span></h2>
         <p class="section-subtitle">Safe, compliant, and designed specifically for schools</p>
@@ -268,7 +325,7 @@
 
     <section id="pricing" class="pricing-section section">
         <h2 class="section-title">Transparent <span class="accent">Pricing</span></h2>
-        <p class="pricing-intro">One price. One time. No recurring trap. No surprises. Just digital experiences that work.</p>
+        <p class="pricing-intro">One payment. No annual fees. No contracts that hold your website hostage. Just a virtual tour and website that are yours to keep.</p>
 
         <div class="pricing-grid">
             <div class="pricing-card">
@@ -279,7 +336,7 @@
                     <li>Professional 360° photography</li>
                     <li>Custom branded tour</li>
                     <li>Interactive hotspots</li>
-                    <li>Mobile-optimized viewing</li>
+                    <li>Mobile-optimised viewing</li>
                     <li>Permanent hosting included</li>
                     <li>Embed on your website</li>
                     <li>3 months support</li>
@@ -291,16 +348,17 @@
                 <h3>£4,500</h3>
                 <div class="pricing-period">One-time investment</div>
                 <div class="pricing-roi">Just £375/month over 1 year, or £90/month over 4 years</div>
+                <p class="pricing-card-desc">Your tour, your website, and no more annual contracts. Everything handed over to you, fully owned.</p>
                 <ul>
                     <li>Everything in Virtual Tour</li>
                     <li>Bespoke website design</li>
                     <li>Unlimited pages</li>
                     <li>Parent portal integration</li>
-                    <li>Digital forms & galleries</li>
+                    <li>Digital forms &amp; galleries</li>
                     <li>Event calendar system</li>
                     <li>6 months support</li>
                 </ul>
-                <a href="#contact" class="btn btn-orange">Most Popular</a>
+                <a href="#contact" class="btn btn-orange">Take Back Control</a>
             </div>
             <div class="pricing-card">
                 <div class="pricing-tier">Custom Solution</div>
@@ -325,36 +383,31 @@
         <p class="section-subtitle">Trusted by schools across Ireland</p>
 
         <div class="testimonials-grid">
-            <div class="testimonial-card">
+            <!-- PLACEHOLDER — replace with real quote from Limavady High School (Paul) -->
+            <div class="testimonial-card testimonial-placeholder">
                 <div class="quote-mark">"</div>
-                <p class="testimonial-text">The virtual tour transformed how we connect with prospective families. Parents can explore our facilities any time, and it's dramatically reduced the number of in-person tours we need to arrange.</p>
+                <p class="testimonial-text">[Real quote from Paul, Limavady High School — to be added]</p>
                 <div class="testimonial-author">
-                    <strong>Mrs. Sarah Thompson</strong>
-                    <span>Principal, Silverstream Primary School</span>
+                    <strong>[Name]</strong>
+                    <span>[Title], Limavady High School</span>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <!-- PLACEHOLDER — replace with real quote from Antrim Grammar -->
+            <div class="testimonial-card testimonial-placeholder">
                 <div class="quote-mark">"</div>
-                <p class="testimonial-text">Karl delivered exactly what he promised. The one-time fee was refreshing compared to the annual subscriptions other companies wanted. Our website finally reflects the quality of education we provide.</p>
+                <p class="testimonial-text">[Real quote from Antrim Grammar — to be added]</p>
                 <div class="testimonial-author">
-                    <strong>Mr. David Patterson</strong>
-                    <span>Head Teacher, Limavady High School</span>
+                    <strong>[Name]</strong>
+                    <span>[Title], Antrim Grammar School</span>
                 </div>
             </div>
-            <div class="testimonial-card">
+            <!-- PLACEHOLDER — replace with real quote from Ballyclare High School -->
+            <div class="testimonial-card testimonial-placeholder">
                 <div class="quote-mark">"</div>
-                <p class="testimonial-text">The 360° tour is our best recruitment tool. Families from across the country can experience our school before visiting. It's professional, immersive, and works flawlessly on all devices.</p>
+                <p class="testimonial-text">[Real quote from Ballyclare High School — to be added]</p>
                 <div class="testimonial-author">
-                    <strong>Mrs. Jennifer Collins</strong>
-                    <span>Head Teacher, Mallusk Integrated Primary</span>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="quote-mark">"</div>
-                <p class="testimonial-text">As a Board of Governors member, I was initially skeptical about the investment. But the virtual tour has proven invaluable - particularly during our ETI inspection. Inspectors could review our facilities remotely, and parents consistently cite the tour as a deciding factor in enrollment.</p>
-                <div class="testimonial-author">
-                    <strong>Mr. Robert McConnell</strong>
-                    <span>Chair of Governors, St. Mary's Primary School</span>
+                    <strong>[Name]</strong>
+                    <span>[Title], Ballyclare High School</span>
                 </div>
             </div>
         </div>
