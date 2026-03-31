@@ -903,6 +903,15 @@ nav a:hover::after {
     transform: translateX(4px);
 }
 
+.portfolio-link--disabled {
+    cursor: default;
+    color: #999;
+}
+
+.portfolio-link--disabled::after {
+    content: '';
+}
+
 
 /* Compliance Section */
 .compliance-section {
@@ -937,16 +946,16 @@ nav a:hover::after {
 }
 
 .compliance-card h3 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
     color: #000;
 }
 
 .compliance-card p {
-    font-size: var(--text-base);
-    color: var(--color-text);
-    line-height: 1.8;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
     font-weight: 300;
 }
 
