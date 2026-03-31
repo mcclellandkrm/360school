@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  command = "echo 'No build needed - static site'"
+
+[dev]
+  command = "npx http-server -p 8000"
+  port = 8000
+  publish = "."
