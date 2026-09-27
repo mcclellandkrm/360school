@@ -20,9 +20,22 @@
 
 <body>
     <div class="urgency-banner">
-        <p>EA Connect results are out. Schools already planning for 2027 intake are booking now: Spaces are limited. <a
-                href="#contact">Get in touch</a></p>
+        <p><span class="banner-long">Open days are only weeks away. Get your virtual tour live before January, when
+                families choose schools for 2027. Autumn shoot dates are limited.</span><span class="banner-short">Get
+                your tour live before January open days.</span> <a href="#contact">Get in touch</a></p>
     </div>
+    <script>
+        // Offset the fixed header by the banner's real height (it wraps on narrow screens)
+        (function () {
+            var banner = document.querySelector('.urgency-banner');
+            function setBannerHeight() {
+                document.documentElement.style.setProperty('--banner-h', banner.offsetHeight + 'px');
+            }
+            setBannerHeight();
+            window.addEventListener('resize', setBannerHeight);
+            window.addEventListener('load', setBannerHeight);
+        })();
+    </script>
 
     <header>
         <div class="nav-container">
@@ -198,11 +211,11 @@
                         alt="Silverstream Primary School">
                 </div>
                 <div class="portfolio-content">
-                    <div class="portfolio-label">Virtual Tour + Design</div>
+                    <div class="portfolio-label">Virtual Tour</div>
                     <h3>Silverstream Primary School</h3>
-                    <p>Custom virtual tour, aerial photography, and possible full website rebuild.</p>
+                    <p>Full walkthrough of the grounds, classrooms, nursery unit and playing fields.</p>
                     <a href="https://360school.co.uk/SilverstreamPS/" class="portfolio-link" target="_blank">View
-                        Project</a>
+                        Tour</a>
                 </div>
             </div>
             <div class="portfolio-item">
@@ -213,7 +226,7 @@
                 <div class="portfolio-content">
                     <div class="portfolio-label">Virtual Tour</div>
                     <h3>Limavady High School</h3>
-                    <p>150% increase in virtual visits, 40% reduction in physical tour requests</p>
+                    <p>Custom-built information popups throughout the tour. 150% increase in virtual visits.</p>
                     <a href="https://360school.co.uk/LHS/" class="portfolio-link" target="_blank">View Tour</a>
                 </div>
             </div>
@@ -261,6 +274,9 @@
                     atmosphere of their campus. Prospective families who couldn't visit in person had no way to
                     experience what made LHS different. The tour changed that, giving every family, anywhere, a genuine
                     feel for the school before they ever set foot in it.</p>
+                <p class="case-study-intro">Every stop now opens a custom information popup, designed and built in-house
+                    to match the school's identity. No third-party platforms, so it is fast, reliable and fully under
+                    our control.</p>
                 <div class="case-study-stats">
                     <!-- PLACEHOLDER — confirm figures with Paul when available -->
                     <div class="case-stat">

@@ -39,7 +39,7 @@ body {
 
 header {
     position: fixed;
-    top: 37px;
+    top: var(--banner-h, 37px);
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.98);
@@ -129,7 +129,7 @@ nav a:hover::after {
     padding: 0 2rem;
     position: relative;
     background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    margin-top: 107px;
+    margin-top: calc(var(--banner-h, 37px) + 70px);
     overflow: hidden;
 }
 
@@ -1622,7 +1622,7 @@ nav a:hover::after {
     .hero {
         height: auto;
         padding: 4rem 2rem;
-        margin-top: 70px;
+        margin-top: calc(var(--banner-h, 37px) + 70px);
     }
 
     .hero h1 {
@@ -1803,6 +1803,28 @@ nav a:hover::after {
     color: #000;
     font-weight: 700;
     text-decoration: underline;
+}
+
+.urgency-banner .banner-short {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .urgency-banner {
+        padding: 0.5rem 1rem;
+    }
+
+    .urgency-banner p {
+        font-size: 0.8rem;
+    }
+
+    .urgency-banner .banner-long {
+        display: none;
+    }
+
+    .urgency-banner .banner-short {
+        display: inline;
+    }
 }
 
 /* ===== TRUSTED BY LOGO STRIP ===== */
