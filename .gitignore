@@ -13,3 +13,6 @@ Graphics and Media/
 # System files
 Thumbs.db
 .vscode/
+
+# Archived versions (kept locally, not part of the site)
+old files/

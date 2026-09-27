@@ -1,8 +1,10 @@
 # Uploads the website to the Plesk server whenever main is pushed to GitHub.
 #
-# - Only uploads files that changed since the last deploy.
-# - Only ever deletes files it uploaded itself, so tour folders (/LHS/,
-#   /SilverstreamPS/, /MalluskIPS/, /tours/) uploaded via FileZilla are never touched.
+# - Upload only: lftp mirror without --delete never removes anything on the
+#   server, so tour folders (/LHS/, /SilverstreamPS/, /MalluskIPS/, /tours/ ...)
+#   uploaded via FileZilla are never touched.
+# - Uses lftp because Plesk's ProFTPD requires TLS session reuse on FTPS data
+#   connections, which lftp (like FileZilla) supports.
 # - FTP details live in GitHub: Settings > Secrets and variables > Actions
 #     FTP_SERVER    194.164.92.145 (same host as FileZilla)
 #     FTP_USERNAME
@@ -26,30 +28,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
       - name: Upload site via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          # Plesk's FTP certificate is issued to the server hostname, not the
-          # domain. Connection is still encrypted; this just skips the name check.
-          security: loose
-          # Folder containing the live index.html, relative to where FTP logs in.
-          server-dir: httpdocs/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            .claude/**
-            dist/**
-            old files/**
-            Graphics and Media/**
-            includes/**
-            development/**
-            node_modules/**
-            package.json
-            package-lock.json
-            netlify.toml
-            _headers
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate no;
+            set ftp:passive-mode true;
+            set net:max-retries 2;
+            set net:timeout 30;
+            open --env-password -u \"$FTP_USERNAME\" \"$FTP_SERVER\";
+            mirror --reverse --verbose --no-perms --parallel=4 \
+              --exclude-glob .git/ \
+              --exclude-glob .git* \
+              --exclude-glob .github/ \
+              --exclude-glob .claude/ \
+              --exclude-glob dist/ \
+              --exclude-glob 'old files/' \
+              --exclude-glob 'Graphics and Media/' \
+              --exclude-glob includes/ \
+              --exclude-glob development/ \
+              --exclude-glob node_modules/ \
+              --exclude-glob package.json \
+              --exclude-glob package-lock.json \
+              --exclude-glob netlify.toml \
+              --exclude-glob _headers \
+              ./ httpdocs/
+          "
