@@ -8,28 +8,57 @@
     /* Typography Scale - All sizes standardized */
     --text-xs: 0.85rem;         /* 15px - Small labels, metadata */
     --text-sm: 1rem;            /* 18px - Footer, small UI text */
-    --text-base: 1.3rem;        /* 23px - ALL body text, lists, descriptions */
-    --text-md: 1.4rem;          /* 25px - Section subtitles, larger paragraphs */
+    --text-base: var(--body);   /* 18px - ALL body text, lists, descriptions (tokens.css) */
+    --text-md: var(--body-l);   /* 20px - Section subtitles, larger paragraphs (tokens.css) */
     --text-lg: 1.8rem;          /* 32px - Small headings (h3) */
     --text-xl: 3.5rem;          /* 63px - Section titles (h2) */
     --text-2xl: 4.5rem;         /* 81px - Hero title (h1) */
 
     /* Colors */
-    --color-primary: #FFAD00;
-    --color-black: #000;
-    --color-white: #fff;
-    --color-text: #666;
-    --color-text-light: #999;
+    --color-primary: var(--heather);
+    --color-black: var(--ink);
+    --color-white: var(--stone-raised);
+    --color-text: var(--ink-muted);
+    --color-text-light: var(--ink-muted);
+
+    /* Resolved here so it keeps the website value inside .calm-screen */
+    --hero-ground: var(--heather-deep);
 }
 
 body {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    color: #000;
+    font-family: var(--font-sans);
+    color: var(--ink);
     line-height: 1.6;
     overflow-x: hidden;
-    background: #fff;
-    font-weight: 200;
-    font-size: 18px;
+    background: var(--stone);
+    font-weight: 400;
+    font-size: var(--body);
+}
+
+/* Heather and Stone: headings in the display face, links in heather and underlined */
+h1, h2, h3, h4,
+.section-title,
+nav a,
+.btn {
+    font-family: var(--font-display);
+}
+
+a {
+    color: var(--heather);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+/* The focus ring follows the local heather inside calm-screen (tokens.css resolves it at :root) */
+.calm-screen {
+    --focus: var(--heather);
+}
+
+/* On heather or deep-heather fills the ring must be light to stay visible */
+.urgency-banner :focus-visible,
+.pricing-card.featured :focus-visible,
+.portfolio-content :focus-visible {
+    outline-color: var(--on-heather);
 }
 
 @keyframes fadeIn {
@@ -42,10 +71,10 @@ header {
     top: var(--banner-h, 37px);
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: color-mix(in srgb, var(--stone) 98%, transparent);
     backdrop-filter: blur(20px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--hairline);
     transform: translateY(0);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
 }
@@ -55,8 +84,8 @@ header.header-hidden {
 }
 
 header.header-scrolled {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    background: var(--stone);
+    box-shadow: 0 2px 20px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .nav-container {
@@ -93,7 +122,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #000;
+    color: var(--ink);
     font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.3px;
@@ -108,12 +137,12 @@ nav a::after {
     left: 0;
     width: 0;
     height: 1px;
-    background: #FFAD00;
+    background: var(--heather);
     transition: width 0.5s ease;
 }
 
 nav a:hover {
-    color: #FFAD00;
+    color: var(--heather);
 }
 
 nav a:hover::after {
@@ -128,7 +157,7 @@ nav a:hover::after {
     text-align: center;
     padding: 0 2rem;
     position: relative;
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    background: var(--hero-ground);
     margin-top: calc(var(--banner-h, 37px) + 70px);
     overflow: hidden;
 }
@@ -140,7 +169,7 @@ nav a:hover::after {
     left: 50%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(255, 173, 0, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--heather) 15%, transparent) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: pulse 8s ease-in-out infinite;
@@ -155,7 +184,7 @@ nav a:hover::after {
     right: 0;
     bottom: 0;
     background: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1920&q=80&auto=format&fit=crop') center/cover;
-    opacity: 0.25;
+    opacity: 0.12; /* photo under an ~88% heather-deep ground: keeps hero text at 4.5:1+ even over bright areas */
     z-index: 0;
 }
 
@@ -177,18 +206,18 @@ nav a:hover::after {
     letter-spacing: -2px;
     margin-bottom: 2rem;
     line-height: 1.2;
-    color: #fff;
+    color: var(--ink);
 }
 
 .hero h1 .accent {
-    color: #FFAD00;
+    color: var(--heather);
     font-weight: 300;
-    text-shadow: 0 0 40px rgba(255, 173, 0, 0.3);
+    text-shadow: none;
 }
 
 .hero p {
     font-size: var(--text-md);
-    color: #ccc;
+    color: var(--ink);
     margin-bottom: 3rem;
     font-weight: 200;
     letter-spacing: 0.2px;
@@ -205,14 +234,14 @@ nav a:hover::after {
 .btn {
     display: inline-block;
     padding: 1.1rem 2.8rem;
-    background: #000;
-    color: #fff;
+    background: var(--heather);
+    color: var(--on-heather);
     text-decoration: none;
     font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    border: 2px solid #000;
+    border: 2px solid var(--heather);
     cursor: pointer;
     border-radius: 8px;
     position: relative;
@@ -226,7 +255,7 @@ nav a:hover::after {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--on-heather) 15%, transparent), transparent);
     transition: left 0.6s ease;
 }
 
@@ -235,67 +264,67 @@ nav a:hover::after {
 }
 
 .btn:hover {
-    background: #1a1a1a;
+    background: var(--heather-deep);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 20%, transparent);
 }
 
 .btn-orange {
-    background: #FFAD00;
-    color: #000;
-    border-color: #FFAD00;
+    background: var(--heather);
+    color: var(--on-heather);
+    border-color: var(--heather);
 }
 
 .btn-orange:hover {
-    background: #FF9E00;
-    border-color: #FF9E00;
+    background: var(--heather-deep);
+    border-color: var(--heather-deep);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(255, 173, 0, 0.3);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--heather) 30%, transparent);
 }
 
 .btn-outline {
     background: transparent;
-    color: #000;
-    border: 2px solid #000;
+    color: var(--heather);
+    border: 2px solid var(--border);
 }
 
 .btn-outline:hover {
-    background: #000;
-    color: #fff;
+    background: var(--heather);
+    color: var(--on-heather);
     transform: translateY(-2px);
 }
 
 /* Hero-specific button overrides for dark background */
 .hero .btn {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
+    background: var(--heather);
+    color: var(--on-heather);
+    border-color: var(--heather);
 }
 
 .hero .btn:hover {
-    background: #f5f5f5;
+    background: var(--ink);
 }
 
 .hero .btn-orange {
-    background: #FFAD00;
-    color: #000;
-    border-color: #FFAD00;
+    background: var(--heather);
+    color: var(--on-heather);
+    border-color: var(--heather);
 }
 
 .hero .btn-orange:hover {
-    background: #FF9E00;
-    border-color: #FF9E00;
+    background: var(--ink);
+    border-color: var(--ink);
 }
 
 .hero .btn-outline {
     background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+    color: var(--ink); /* ink, not heather: heather text is under 4.5:1 over the photo */
+    border: 2px solid var(--ink);
 }
 
 .hero .btn-outline:hover {
-    background: #fff;
-    color: #000;
+    background: var(--heather);
+    color: var(--on-heather);
 }
 
 .scroll-indicator {
@@ -303,7 +332,7 @@ nav a:hover::after {
     bottom: 3rem;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(255, 173, 0, 0.8);
+    color: var(--heather);
     font-size: 0.75rem;
     letter-spacing: 2px;
     font-weight: 400;
@@ -315,7 +344,7 @@ nav a:hover::after {
 }
 
 .scroll-indicator:hover {
-    color: rgba(255, 173, 0, 1);
+    color: var(--ink);
 }
 
 .scroll-indicator::after {
@@ -326,8 +355,8 @@ nav a:hover::after {
     transform: translateX(-50%);
     width: 20px;
     height: 20px;
-    border-left: 2px solid rgba(255, 173, 0, 0.6);
-    border-bottom: 2px solid rgba(255, 173, 0, 0.6);
+    border-left: 2px solid var(--heather);
+    border-bottom: 2px solid var(--heather);
     transform: translateX(-50%) rotate(-45deg);
     animation: arrowBounce 2s infinite;
 }
@@ -356,12 +385,12 @@ nav a:hover::after {
 }
 
 .section-title .accent {
-    color: #FFAD00;
+    color: var(--heather);
 }
 
 /* About Section */
 .about-section {
-    background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+    background: var(--stone);
 }
 
 .about-content {
@@ -383,9 +412,9 @@ nav a:hover::after {
     list-style: none;
     padding: 0;
     margin: 2rem 0;
-    background: rgba(255, 173, 0, 0.05);
+    background: var(--heather-tint);
     padding: 2rem;
-    border-left: 4px solid #FFAD00;
+    border-left: 4px solid var(--heather);
     border-radius: 8px;
 }
 
@@ -406,28 +435,28 @@ nav a:hover::after {
     content: '✗';
     position: absolute;
     left: 0;
-    color: #ff4444;
+    color: var(--ink-muted);
     font-weight: 700;
 }
 
 .about-list li strong {
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
 }
 
 .about-highlight {
     font-size: 1.6rem;
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
     margin: 2.5rem 0;
     padding-left: 2rem;
-    border-left: 4px solid #FFAD00;
+    border-left: 4px solid var(--heather);
 }
 
 .about-signature {
     font-size: var(--text-md);
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
     margin-top: 3rem;
     font-style: italic;
 }
@@ -445,7 +474,7 @@ nav a:hover::after {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px color-mix(in srgb, var(--ink) 10%, transparent);
 }
 
 .about-image img {
@@ -463,17 +492,17 @@ nav a:hover::after {
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
+    background: var(--heather);
     padding: 1.5rem 2rem;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(255, 173, 0, 0.3);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--heather) 30%, transparent);
 }
 
 .badge-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #000;
+    color: var(--on-heather);
     line-height: 1;
     margin-bottom: 0.5rem;
 }
@@ -481,7 +510,7 @@ nav a:hover::after {
 .badge-text {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #000;
+    color: var(--on-heather);
     line-height: 1.3;
     opacity: 0.9;
 }
@@ -496,7 +525,7 @@ nav a:hover::after {
 
 /* Problem/Solution Section */
 .problem-section {
-    background: linear-gradient(rgba(249, 249, 249, 0.97), rgba(249, 249, 249, 0.97)),
+    background: linear-gradient(color-mix(in srgb, var(--stone) 97%, transparent), color-mix(in srgb, var(--stone) 97%, transparent)),
                 url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1920&q=80&auto=format&fit=crop') center/cover fixed;
 }
 
@@ -511,19 +540,19 @@ nav a:hover::after {
     font-size: 1.8rem;
     font-weight: 500;
     margin-bottom: 2rem;
-    color: #000;
+    color: var(--ink);
 }
 
 .problem-list {
     list-style: none;
     font-size: var(--text-base);
     line-height: 2.2;
-    color: #555;
+    color: var(--ink-muted);
     font-weight: 300;
 }
 
 .problem-list li {
-    opacity: 0.7;
+    opacity: 1; /* was 0.7: kept muted text above 4.5:1 */
     margin-bottom: 0.8rem;
     padding-left: 1.5rem;
     position: relative;
@@ -534,7 +563,7 @@ nav a:hover::after {
     content: '−';
     position: absolute;
     left: 0;
-    color: #ccc;
+    color: var(--ink-muted);
     font-weight: 400;
 }
 
@@ -546,7 +575,7 @@ nav a:hover::after {
     list-style: none;
     font-size: var(--text-base);
     line-height: 2.2;
-    color: #555;
+    color: var(--ink-muted);
     font-weight: 300;
 }
 
@@ -561,18 +590,18 @@ nav a:hover::after {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #FFAD00;
+    color: var(--heather);
     font-weight: 400;
 }
 
 .solution-list li:hover {
-    color: #000;
+    color: var(--ink);
     padding-left: 2rem;
 }
 
 /* How It Works */
 .how-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+    background: linear-gradient(color-mix(in srgb, var(--stone) 95%, transparent), color-mix(in srgb, var(--stone) 95%, transparent)),
                 url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1920&q=80&auto=format&fit=crop') center/cover fixed;
     position: relative;
 }
@@ -592,15 +621,15 @@ nav a:hover::after {
 }
 
 .process-step:hover {
-    background: #f9f9f9;
+    background: var(--heather-tint);
 }
 
 .step-number {
     font-size: 3rem;
     font-weight: 700;
-    color: #FFAD00;
+    color: var(--heather);
     margin-bottom: 1rem;
-    opacity: 0.6;
+    opacity: 1; /* was 0.6: faded heather fell below 3:1 */
     transition: opacity 0.5s ease;
 }
 
@@ -623,7 +652,7 @@ nav a:hover::after {
 
 /* Services Section */
 .services-section {
-    background: #fff;
+    background: var(--stone);
 }
 
 .services-intro {
@@ -639,17 +668,17 @@ nav a:hover::after {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--hairline);
     border-radius: 12px;
     overflow: hidden;
 }
 
 .service-card {
     padding: 3rem 2.5rem;
-    border-right: 1px solid #e5e5e5;
+    border-right: 1px solid var(--hairline);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    background: #fff;
+    background: var(--stone-raised);
     overflow: hidden;
 }
 
@@ -658,7 +687,7 @@ nav a:hover::after {
     position: absolute;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(255, 173, 0, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--heather) 10%, transparent) 0%, transparent 70%);
     border-radius: 50%;
     top: var(--mouse-y, 50%);
     left: var(--mouse-x, 50%);
@@ -683,13 +712,13 @@ nav a:hover::after {
     left: 0;
     right: 0;
     height: 2px;
-    background: #FFAD00;
+    background: var(--heather);
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 .service-card:hover {
-    background: rgba(255, 173, 0, 0.03);
+    background: color-mix(in srgb, var(--heather) 3%, transparent);
 }
 
 .service-card:hover::before {
@@ -698,7 +727,7 @@ nav a:hover::after {
 
 .service-number {
     font-size: 0.85rem;
-    color: #999;
+    color: var(--ink-muted);
     margin-bottom: 1rem;
     font-weight: 500;
     text-transform: uppercase;
@@ -771,7 +800,7 @@ nav a:hover::after {
 
 
 .portfolio-item {
-    background: #111;
+    background: var(--heather-deep);
     position: relative;
     overflow: hidden;
     border-radius: 12px;
@@ -783,7 +812,7 @@ nav a:hover::after {
 
 .portfolio-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(255, 173, 0, 0.2);
+    box-shadow: 0 20px 60px color-mix(in srgb, var(--heather) 20%, transparent);
 }
 
 .portfolio-image {
@@ -813,12 +842,13 @@ nav a:hover::after {
     position: relative;
     z-index: 2;
     padding: 3rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    background: linear-gradient(to top, color-mix(in srgb, var(--heather-deep) 95%, transparent) 0%, color-mix(in srgb, var(--heather-deep) 80%, transparent) 50%, transparent 100%);
     margin-top: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     min-height: 50%;
+    color: var(--on-heather);
 }
 
 .portfolio-item::before {
@@ -828,7 +858,7 @@ nav a:hover::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 173, 0, 0.05) 0%, transparent 100%);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--heather) 5%, transparent) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.5s ease;
     z-index: 1;
@@ -840,7 +870,7 @@ nav a:hover::after {
 
 .portfolio-label {
     font-size: 0.75rem;
-    color: #FFAD00;
+    color: var(--heather-tint);
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 500;
@@ -866,7 +896,7 @@ nav a:hover::after {
 }
 
 .portfolio-item p {
-    color: #ccc;
+    color: var(--on-heather);
     font-weight: 300;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
@@ -876,8 +906,8 @@ nav a:hover::after {
 }
 
 .portfolio-link {
-    color: #FFAD00;
-    text-decoration: none;
+    color: var(--on-heather);
+    text-decoration: underline;
     font-size: 0.85rem;
     font-weight: 500;
     display: inline-block;
@@ -905,7 +935,7 @@ nav a:hover::after {
 
 .portfolio-link--disabled {
     cursor: default;
-    color: #999;
+    color: color-mix(in srgb, var(--on-heather) 70%, var(--heather-deep));
 }
 
 .portfolio-link--disabled::after {
@@ -915,7 +945,7 @@ nav a:hover::after {
 
 /* Compliance Section */
 .compliance-section {
-    background: #f9f9f9;
+    background: var(--heather-tint);
 }
 
 .compliance-grid {
@@ -926,17 +956,17 @@ nav a:hover::after {
 }
 
 .compliance-card {
-    background: #fff;
+    background: var(--stone-raised);
     padding: 2.5rem 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--hairline);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .compliance-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(255, 173, 0, 0.12);
-    border-color: rgba(255, 173, 0, 0.2);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--heather) 12%, transparent);
+    border-color: color-mix(in srgb, var(--heather) 20%, transparent);
 }
 
 .compliance-icon {
@@ -949,12 +979,12 @@ nav a:hover::after {
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: #000;
+    color: var(--ink);
 }
 
 .compliance-card p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--ink-muted);
     line-height: 1.7;
     font-weight: 300;
 }
@@ -973,7 +1003,7 @@ nav a:hover::after {
 
 /* Pricing Section */
 .pricing-section {
-    background: #f9f9f9;
+    background: var(--heather-tint);
 }
 
 .pricing-intro {
@@ -989,14 +1019,14 @@ nav a:hover::after {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
-    background: #ddd;
+    background: var(--hairline);
     margin-top: 4rem;
     border-radius: 12px;
     overflow: hidden;
 }
 
 .pricing-card {
-    background: #fff;
+    background: var(--stone-raised);
     padding: 3rem;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -1019,7 +1049,7 @@ nav a:hover::after {
     position: absolute;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(255, 173, 0, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--heather) 8%, transparent) 0%, transparent 70%);
     border-radius: 50%;
     top: var(--mouse-y, 50%);
     left: var(--mouse-x, 50%);
@@ -1030,11 +1060,11 @@ nav a:hover::after {
 }
 
 .pricing-card:hover::before {
-    background: #FFAD00;
+    background: var(--heather);
 }
 
 .pricing-card:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 30px color-mix(in srgb, var(--ink) 10%, transparent);
 }
 
 .pricing-card:hover::after {
@@ -1042,58 +1072,58 @@ nav a:hover::after {
 }
 
 .pricing-card.featured {
-    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
+    background: var(--heather);
     transform: scale(1.05);
     z-index: 1;
-    border-color: #FFAD00;
+    border-color: var(--heather);
 }
 
 .pricing-card.featured .pricing-tier {
-    color: #000;
+    color: var(--on-heather);
     font-weight: 600;
 }
 
 .pricing-card.featured .pricing-period {
-    color: rgba(0, 0, 0, 0.7);
+    color: var(--on-heather);
 }
 
 .pricing-card.featured ul {
-    color: #000;
+    color: var(--on-heather);
 }
 
 .pricing-card.featured h3 {
-    color: #000;
+    color: var(--on-heather);
 }
 
 .pricing-card.featured li::before {
-    color: #000;
+    color: var(--on-heather);
     opacity: 1;
 }
 
 .pricing-card.featured .btn {
-    background: #000;
-    color: #FFAD00;
-    border-color: #000;
+    background: var(--stone-raised);
+    color: var(--heather);
+    border-color: var(--stone-raised);
     font-weight: 600;
 }
 
 .pricing-card.featured .btn:hover {
-    background: #1a1a1a;
-    color: #fff;
+    background: var(--heather-tint);
+    color: var(--heather-deep);
 }
 
 .pricing-card.featured::before {
-    background: #000;
+    background: var(--heather-deep);
     height: 4px;
 }
 
 .pricing-card.featured::after {
-    background: radial-gradient(circle, rgba(255, 173, 0, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--on-heather) 12%, transparent) 0%, transparent 70%);
 }
 
 .pricing-tier {
     font-size: 0.85rem;
-    color: #999;
+    color: var(--ink-muted);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 500;
@@ -1108,14 +1138,14 @@ nav a:hover::after {
 }
 
 .pricing-period {
-    color: #999;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
     font-weight: 300;
 }
 
 .pricing-roi {
-    color: #FFAD00;
+    color: var(--heather);
     font-size: 0.95rem;
     margin-bottom: 2rem;
     font-weight: 500;
@@ -1123,18 +1153,18 @@ nav a:hover::after {
 }
 
 .pricing-card.featured .pricing-roi {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--on-heather);
 }
 
 .pricing-card-desc {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--ink-muted);
     margin-bottom: 1.5rem;
     line-height: 1.6;
 }
 
 .pricing-card.featured .pricing-card-desc {
-    color: rgba(0, 0, 0, 0.7);
+    color: var(--on-heather);
 }
 
 .pricing-card ul {
@@ -1149,7 +1179,7 @@ nav a:hover::after {
 .pricing-card li::before {
     content: '✓';
     margin-right: 0.8rem;
-    color: #FFAD00;
+    color: var(--heather);
     font-weight: 400;
     opacity: 0.6;
     transition: opacity 0.5s ease;
@@ -1161,7 +1191,7 @@ nav a:hover::after {
 
 /* Testimonials Section */
 .testimonials-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.98)),
+    background: linear-gradient(color-mix(in srgb, var(--stone) 98%, transparent), color-mix(in srgb, var(--stone) 98%, transparent)),
                 url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80&auto=format&fit=crop') center/cover fixed;
 }
 
@@ -1173,24 +1203,24 @@ nav a:hover::after {
 }
 
 .testimonial-card {
-    background: #fff;
+    background: var(--stone-raised);
     padding: 3rem 2.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--ink) 6%, transparent);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--hairline);
 }
 
 .testimonial-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(255, 173, 0, 0.15);
-    border-color: rgba(255, 173, 0, 0.2);
+    box-shadow: 0 20px 60px color-mix(in srgb, var(--heather) 15%, transparent);
+    border-color: color-mix(in srgb, var(--heather) 20%, transparent);
 }
 
 .quote-mark {
     font-size: 6rem;
-    color: rgba(255, 173, 0, 0.15);
+    color: color-mix(in srgb, var(--heather) 25%, transparent);
     line-height: 1;
     position: absolute;
     top: 1rem;
@@ -1201,7 +1231,7 @@ nav a:hover::after {
 .testimonial-text {
     font-size: var(--text-base);
     line-height: 1.8;
-    color: #555;
+    color: var(--ink);
     font-weight: 200;
     margin-bottom: 2rem;
     position: relative;
@@ -1218,19 +1248,19 @@ nav a:hover::after {
 
 .testimonial-author strong {
     font-size: 1rem;
-    color: #000;
+    color: var(--ink);
     font-weight: 500;
 }
 
 .testimonial-author span {
     font-size: 0.9rem;
-    color: #999;
+    color: var(--ink-muted);
     font-weight: 200;
 }
 
 /* FAQ Section */
 .faq-section {
-    background: #f9f9f9;
+    background: var(--heather-tint);
 }
 
 .faq-grid {
@@ -1241,23 +1271,23 @@ nav a:hover::after {
 }
 
 .faq-item {
-    background: #fff;
+    background: var(--stone-raised);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--hairline);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
 .faq-item:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: rgba(255, 173, 0, 0.2);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 8%, transparent);
+    border-color: color-mix(in srgb, var(--heather) 20%, transparent);
 }
 
 .faq-item h3 {
     font-size: 1.35rem;
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
     margin-bottom: 0;
     line-height: 1.4;
     display: flex;
@@ -1269,7 +1299,7 @@ nav a:hover::after {
 .faq-toggle {
     font-size: 1.5rem;
     font-weight: 300;
-    color: #FFAD00;
+    color: var(--heather);
     transition: transform 0.3s ease;
     flex-shrink: 0;
     margin-left: 1rem;
@@ -1299,13 +1329,13 @@ nav a:hover::after {
 }
 
 .faq-item strong {
-    color: #000;
+    color: var(--ink);
     font-weight: 400;
 }
 
 /* Contact Section */
 .contact-section {
-    background: linear-gradient(135deg, #f9f9f9 0%, #fff 100%);
+    background: var(--stone);
 }
 
 .contact-container {
@@ -1342,12 +1372,12 @@ nav a:hover::after {
 .feature-icon {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #FFAD00 0%, #FF9E00 100%);
+    background: var(--heather);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
+    color: var(--on-heather);
     font-weight: 700;
     font-size: 1.2rem;
     flex-shrink: 0;
@@ -1357,7 +1387,7 @@ nav a:hover::after {
     font-size: 1.1rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
-    color: #000;
+    color: var(--ink);
 }
 
 .feature-content p {
@@ -1371,36 +1401,36 @@ nav a:hover::after {
     display: flex;
     gap: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--hairline);
 }
 
 .contact-method h4 {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #999;
+    color: var(--ink-muted);
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
 
 .contact-method a {
     font-size: 1.1rem;
-    color: #000;
-    text-decoration: none;
+    color: var(--heather);
+    text-decoration: underline;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .contact-method a:hover {
-    color: #FFAD00;
+    color: var(--heather-deep);
 }
 
 /* Contact Form */
 .contact-form-wrapper {
-    background: #fff;
+    background: var(--stone-raised);
     padding: 3rem;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .contact-form .form-group {
@@ -1411,7 +1441,7 @@ nav a:hover::after {
     display: block;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
     margin-bottom: 0.5rem;
 }
 
@@ -1420,20 +1450,20 @@ nav a:hover::after {
 .contact-form textarea {
     width: 100%;
     padding: 0.9rem 1.2rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-family: inherit;
     transition: all 0.3s ease;
-    background: #fff;
+    background: var(--stone-raised);
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #FFAD00;
-    box-shadow: 0 0 0 3px rgba(255, 173, 0, 0.1);
+    border-color: var(--heather);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--heather) 20%, transparent);
 }
 
 .contact-form textarea {
@@ -1479,8 +1509,8 @@ nav a:hover::after {
 
 /* Newsletter Section */
 .newsletter-section {
-    background: #000;
-    color: #fff;
+    background: var(--heather-tint);
+    color: var(--ink);
     padding: 4rem 4rem;
 }
 
@@ -1497,12 +1527,12 @@ nav a:hover::after {
     font-size: 2rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
-    color: #fff;
+    color: var(--ink);
 }
 
 .newsletter-content p {
     font-size: 1.05rem;
-    color: #999;
+    color: var(--ink-muted);
     font-weight: 300;
     line-height: 1.6;
 }
@@ -1516,23 +1546,23 @@ nav a:hover::after {
 .newsletter-form input[type="email"] {
     flex: 1;
     padding: 1rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--border);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    background: var(--stone-raised);
+    color: var(--ink);
     font-size: 1rem;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-family: inherit;
     transition: all 0.3s ease;
 }
 
 .newsletter-form input[type="email"]::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--ink-muted);
 }
 
 .newsletter-form input[type="email"]:focus {
     outline: none;
-    border-color: #FFAD00;
-    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--heather);
+    background: var(--stone-raised);
 }
 
 .newsletter-form .btn {
@@ -1599,11 +1629,11 @@ nav a:hover::after {
     .service-card,
     .pricing-card {
         border-right: none;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid var(--hairline);
     }
 
     .pricing-grid {
-        background: #f9f9f9;
+        background: var(--heather-tint);
     }
 
     .contact-container {
@@ -1635,18 +1665,18 @@ nav a:hover::after {
 }
 /* Portfolio Section */
 .portfolio-section {
-    background: #000;
-    color: #fff;
+    background: var(--stone);
+    color: var(--ink);
     padding: 6rem 0 !important;
 }
 
 .portfolio-section .section-title {
-    color: #fff;
+    color: var(--ink);
     padding: 0 4rem;
 }
 
 .portfolio-section .section-subtitle {
-    color: #999;
+    color: var(--ink-muted);
     padding: 0 4rem;
 }
 
@@ -1715,7 +1745,7 @@ nav a:hover::after {
     top: 0;
     left: 0;
     right: 0;
-    background: #FFAD00;
+    background: var(--heather);
     padding: 0.65rem 2rem;
     text-align: center;
     z-index: 1001;
@@ -1724,12 +1754,12 @@ nav a:hover::after {
 .urgency-banner p {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #000;
+    color: var(--on-heather);
     margin: 0;
 }
 
 .urgency-banner a {
-    color: #000;
+    color: var(--on-heather);
     font-weight: 700;
     text-decoration: underline;
 }
@@ -1759,7 +1789,7 @@ nav a:hover::after {
 /* ===== TRUSTED BY LOGO STRIP ===== */
 .trusted-by-section {
     padding: 2.5rem 4rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--hairline);
     text-align: center;
 }
 
@@ -1798,14 +1828,14 @@ nav a:hover::after {
 /* ===== LHS CASE STUDY ===== */
 .case-study-section {
     padding: 6rem 4rem;
-    background: #f9f9f9;
+    background: var(--heather-tint);
 }
 
 .case-study-label {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #FFAD00;
+    color: var(--heather);
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -1825,7 +1855,7 @@ nav a:hover::after {
 }
 
 .case-study-intro {
-    color: #555;
+    color: var(--ink);
     font-size: 1.05rem;
     line-height: 1.7;
     margin-bottom: 2rem;
@@ -1840,25 +1870,25 @@ nav a:hover::after {
 .case-stat-number {
     font-size: 2rem;
     font-weight: 700;
-    color: #FFAD00;
+    color: var(--heather);
     line-height: 1;
 }
 
 .case-stat-label {
     font-size: 0.8rem;
-    color: #777;
+    color: var(--ink-muted);
     margin-top: 0.3rem;
 }
 
 .case-study-quote {
-    border-left: 3px solid #FFAD00;
+    border-left: 3px solid var(--heather);
     padding-left: 1.5rem;
     margin: 0 0 2rem;
 }
 
 .case-study-quote p {
     font-size: 1rem;
-    color: #444;
+    color: var(--ink);
     font-style: italic;
     line-height: 1.7;
     margin-bottom: 0.5rem;
@@ -1866,7 +1896,7 @@ nav a:hover::after {
 
 .case-study-quote cite {
     font-size: 0.85rem;
-    color: #999;
+    color: var(--ink-muted);
     font-style: normal;
 }
 

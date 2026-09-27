@@ -5,20 +5,20 @@
 }
 
 body {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    color: #000;
+    font-family: var(--font-sans);
+    color: var(--ink);
     line-height: 1.8;
-    background: #fff;
+    background: var(--stone);
     font-weight: 300;
-    --accent-orange: #FFAD00;
+    --accent-orange: var(--heather);
 }
 
 header {
-    background: #000;
-    color: #fff;
+    background: var(--stone-raised);
+    color: var(--ink);
     padding: 3rem 2rem;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 173, 0, 0.1);
+    border-bottom: 1px solid var(--hairline);
 }
 
 .header-content {
@@ -34,11 +34,22 @@ header {
 }
 
 .logo span.accent {
-    color: #FFAD00;
+    color: var(--heather);
+}
+
+.logo {
+    display: inline-block;
+}
+
+.logo-img {
+    height: 32px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .header-subtitle {
-    color: #999;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     font-weight: 300;
 }
@@ -55,11 +66,11 @@ h1 {
     font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: 1rem;
-    color: #000;
+    color: var(--ink);
 }
 
 .last-updated {
-    color: #999;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     margin-bottom: 3rem;
     font-weight: 300;
@@ -70,8 +81,8 @@ h2 {
     font-weight: 500;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
-    color: #000;
-    border-bottom: 2px solid #FFAD00;
+    color: var(--ink);
+    border-bottom: 2px solid var(--heather);
     padding-bottom: 0.8rem;
 }
 
@@ -80,13 +91,13 @@ h3 {
     font-weight: 500;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: #000;
+    color: var(--ink);
 }
 
 p {
     margin-bottom: 1.5rem;
     font-weight: 300;
-    color: #333;
+    color: var(--ink);
 }
 
 ul {
@@ -97,35 +108,35 @@ ul {
 li {
     margin-bottom: 0.8rem;
     font-weight: 300;
-    color: #333;
+    color: var(--ink);
 }
 
 strong {
     font-weight: 500;
-    color: #000;
+    color: var(--ink);
 }
 
 em {
-    color: #666;
+    color: var(--ink-muted);
     font-weight: 300;
 }
 
 a {
-    color: #FFAD00;
-    text-decoration: none;
+    color: var(--heather);
+    text-decoration: underline;
     transition: color 0.5s ease;
     font-weight: 400;
 }
 
 a:hover {
-    color: #FF9E00;
+    color: var(--heather-deep);
     text-decoration: underline;
 }
 
 .back-link {
     display: inline-block;
     margin-bottom: 2rem;
-    color: #666;
+    color: var(--ink-muted);
     font-size: 0.9rem;
     font-weight: 400;
     transition: color 0.5s ease;
@@ -136,14 +147,14 @@ a:hover {
 }
 
 .back-link:hover {
-    color: #FFAD00;
+    color: var(--heather);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--hairline);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -151,15 +162,15 @@ table {
 th, td {
     padding: 1.2rem;
     text-align: left;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--hairline);
     font-weight: 300;
 }
 
 th {
-    background: #f9f9f9;
+    background: var(--heather-tint);
     font-weight: 500;
-    color: #000;
-    border-bottom: 2px solid #FFAD00;
+    color: var(--ink);
+    border-bottom: 2px solid var(--heather);
 }
 
 tr:last-child td {
@@ -192,4 +203,10 @@ footer {
     th, td {
         padding: 0.8rem;
     }
+}
+
+/* Heather and Stone: headings in the display face */
+h1, h2, h3,
+.header-subtitle {
+    font-family: var(--font-display);
 }

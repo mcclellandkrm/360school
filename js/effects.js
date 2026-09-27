@@ -1,5 +1,8 @@
 // Simplified effects without custom cursor
 
+// Respect the visitor's "reduce motion" setting: no GSAP reveals, no card lift
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Sticky Header with Hide/Show on Scroll
 let lastScrollTop = 0;
 const header = document.querySelector('header');
@@ -31,7 +34,7 @@ window.addEventListener('scroll', function() {
 
 // GSAP Hero Animations
 document.addEventListener('DOMContentLoaded', function() {
-    if (typeof gsap !== 'undefined') {
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
         // Register ScrollTrigger plugin
         gsap.registerPlugin(ScrollTrigger);
 
@@ -166,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     cards.forEach(card => {
         card.addEventListener('mouseenter', function(e) {
-            this.style.boxShadow = '0 20px 60px rgba(255, 173, 0, 0.15)';
-            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 20px 60px color-mix(in srgb, var(--heather) 15%, transparent)';
+            if (!prefersReducedMotion) this.style.transform = 'translateY(-5px)';
         });
 
         card.addEventListener('mouseleave', function() {
@@ -194,7 +197,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({
-                behavior: 'smooth',
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
                 block: 'start'
             });
         }

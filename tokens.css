@@ -1,0 +1,37 @@
+/* 360School: Heather and Stone design tokens (27 Sep 2026)
+   Source of truth: the "360School Heather and Stone" design system.
+   Website theme on :root. Walkthrough calm-screen theme on .calm-screen. */
+:root{
+  /* colour */
+  --stone:#F3F1EE;          /* page ground */
+  --stone-raised:#FAF9F7;   /* forms, raised cards */
+  --heather-tint:#E8E4EC;   /* pillars, pull-quotes, trust bar */
+  --ink:#2B2A30;            /* all body text and headings */
+  --ink-muted:#5E5A66;      /* captions, hints, footer */
+  --heather:#5B4E7A;        /* the one accent: links, primary buttons, focus */
+  --on-heather:#F7F5F2;     /* text on heather fills */
+  --heather-deep:#43395C;   /* large decorative blocks only */
+  --border:#85808D;         /* control borders */
+  --hairline:#DAD5DF;       /* decorative separators only */
+  --focus:var(--heather);
+
+  /* type */
+  --font-display:"Outfit", system-ui, sans-serif;
+  --font-sans:"Atkinson Hyperlegible Next","Atkinson Hyperlegible", system-ui, sans-serif;
+  --display-xl:56px; --display-l:40px; --heading:28px; --subheading:21px;
+  --body-l:20px; --body:18px; --small:15px; --label:13px;
+
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:72px; --space-9:112px;
+
+  /* radius */
+  --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-pill:999px;
+}
+.calm-screen{
+  --stone:#1E2124; --stone-raised:#272A2E; --heather-tint:#2E2B37;
+  --ink:#E8E4DA; --ink-muted:#B4AFBB; --heather:#B8A9D9; --on-heather:#1E2124;
+  --heather-deep:#6B5E8F; --border:#7D7985; --hairline:#34373C;
+}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
