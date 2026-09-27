@@ -6,3 +6,38 @@
   command = "npx http-server -p 8000"
   port = 8000
   publish = "."
+
+# ---------------------------------------------------------------------------
+# Tours stay hosted on the Plesk server at tours.360school.co.uk.
+# These keep existing links (on school websites, emails, QR codes) working.
+# 302 (temporary) so we can move tours later without browsers caching it.
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/LHS/*"
+  to = "https://tours.360school.co.uk/LHS/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/SilverstreamPS/*"
+  to = "https://tours.360school.co.uk/SilverstreamPS/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/MalluskIPS/*"
+  to = "https://tours.360school.co.uk/MalluskIPS/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/tours/*"
+  to = "https://tours.360school.co.uk/tours/:splat"
+  status = 302
+
+# Safety net: any other path that doesn't exist in this repo (e.g. an older
+# tour folder we've forgotten about) is sent to the Plesk server too.
+# Netlify only applies this when no matching file exists, so site pages
+# are unaffected.
+[[redirects]]
+  from = "/*"
+  to = "https://tours.360school.co.uk/:splat"
+  status = 302
