@@ -1,0 +1,55 @@
+# Uploads the website to the Plesk server whenever main is pushed to GitHub.
+#
+# - Only uploads files that changed since the last deploy.
+# - Only ever deletes files it uploaded itself, so tour folders (/LHS/,
+#   /SilverstreamPS/, /MalluskIPS/, /tours/) uploaded via FileZilla are never touched.
+# - FTP details live in GitHub: Settings > Secrets and variables > Actions
+#     FTP_SERVER    194.164.92.145 (same host as FileZilla)
+#     FTP_USERNAME
+#     FTP_PASSWORD
+# - Can also be run by hand: Actions tab > Deploy to 360school.co.uk > Run workflow
+
+name: Deploy to 360school.co.uk
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload site via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          # Plesk's FTP certificate is issued to the server hostname, not the
+          # domain. Connection is still encrypted; this just skips the name check.
+          security: loose
+          # Folder containing the live index.html, relative to where FTP logs in.
+          server-dir: httpdocs/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            .claude/**
+            dist/**
+            old files/**
+            Graphics and Media/**
+            includes/**
+            development/**
+            node_modules/**
+            package.json
+            package-lock.json
+            netlify.toml
+            _headers
