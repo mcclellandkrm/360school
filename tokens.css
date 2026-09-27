@@ -35,3 +35,7 @@
 }
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* status (added 27 Sep): always pair with an icon and a word */
+:root{ --success:#1F5A73; --success-surface:#E2EDF1; --danger:#9A2F24; --danger-surface:#F7E7E3; }
+.calm-screen{ --success:#8CC6DE; --success-surface:#1C2E36; --danger:#F2A091; --danger-surface:#3A2422; }

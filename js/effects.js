@@ -237,43 +237,132 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', () => updateCarousel(-1));
 });
 
-// Contact Form Handling
+// Contact Form and Newsletter Handling
+// Messages always pair colour with an icon and words (status tokens in tokens.css).
+const STATUS_ICONS = {
+    success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+    error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5L2.5 20h19L12 3.5z"/><path d="M12 10v4.5"/><path d="M12 17.5h.01"/></svg>'
+};
+
+const EMAIL_LINK = '<a href="mailto:karl@360school.co.uk">karl@360school.co.uk</a>';
+
+const FIELD_HINTS = {
+    name: 'Please enter your name.',
+    school: 'Please enter your school\'s name.',
+    email: 'Please enter your email address.',
+    interest: 'Please choose what you\'re interested in.'
+};
+
+function showStatus(statusEl, type, messageHtml) {
+    statusEl.className = 'form-status ' + type;
+    statusEl.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    statusEl.innerHTML = STATUS_ICONS[type] + '<p>' + messageHtml + '</p>';
+}
+
+function clearStatus(statusEl) {
+    statusEl.className = 'form-status';
+    statusEl.removeAttribute('role');
+    statusEl.innerHTML = '';
+}
+
+function hintFor(field) {
+    if (field.type === 'email' && field.value.trim() !== '' && field.validity.typeMismatch) {
+        return 'That email address doesn\'t look right. Please check it.';
+    }
+    return FIELD_HINTS[field.name] || 'Please fill in this field.';
+}
+
+// Mark or unmark one field: danger border (CSS) plus a text hint underneath
+function setFieldError(field, message) {
+    const hintId = field.id + '-hint';
+    let hint = document.getElementById(hintId);
+
+    if (message) {
+        field.setAttribute('aria-invalid', 'true');
+        if (!hint) {
+            hint = document.createElement('p');
+            hint.className = 'field-hint';
+            hint.id = hintId;
+            // In the newsletter row the hint sits under the whole row, before the message
+            const statusEl = field.form.querySelector('.form-status');
+            if (field.form.classList.contains('newsletter-form')) {
+                field.form.insertBefore(hint, statusEl);
+            } else {
+                field.insertAdjacentElement('afterend', hint);
+            }
+        }
+        hint.textContent = message;
+        field.setAttribute('aria-describedby', hintId);
+    } else {
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+        if (hint) hint.remove();
+    }
+}
+
+// Check every field; returns the first invalid one (or null)
+function validateForm(form) {
+    let firstInvalid = null;
+    form.querySelectorAll('input:not([type="hidden"]), select, textarea').forEach(field => {
+        const valid = field.checkValidity();
+        setFieldError(field, valid ? null : hintFor(field));
+        if (!valid && !firstInvalid) firstInvalid = field;
+    });
+    return firstInvalid;
+}
+
+// Clear a field's error as soon as it becomes valid
+function watchFields(form) {
+    const recheck = e => {
+        const field = e.target;
+        if (field.getAttribute('aria-invalid') === 'true' && field.checkValidity()) {
+            setFieldError(field, null);
+        }
+    };
+    form.addEventListener('input', recheck);
+    form.addEventListener('change', recheck);
+}
+
+async function postForm(form) {
+    const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Form submission failed');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     const newsletterForm = document.getElementById('newsletterForm');
 
     if (contactForm) {
+        const formStatus = document.getElementById('formStatus');
+        const errorMessage = 'Not sent. Please check the highlighted fields, or email ' + EMAIL_LINK + '.';
+        watchFields(contactForm);
+
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            clearStatus(formStatus);
 
-            const formStatus = document.getElementById('formStatus');
+            const firstInvalid = validateForm(this);
+            if (firstInvalid) {
+                showStatus(formStatus, 'error', errorMessage);
+                firstInvalid.focus();
+                return;
+            }
+
             const submitBtn = this.querySelector('.btn-submit');
             const originalText = submitBtn.textContent;
-
-            // Update button state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
             try {
-                const formData = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    formStatus.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.';
-                    formStatus.className = 'form-status success';
-                    this.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
+                await postForm(this);
+                showStatus(formStatus, 'success', 'Message sent. Thank you, Karl will be in touch.');
+                this.reset();
             } catch (error) {
-                formStatus.textContent = 'Sorry, there was an error sending your message. Please try emailing us directly at karl@360school.co.uk';
-                formStatus.className = 'form-status error';
+                showStatus(formStatus, 'error', errorMessage);
             } finally {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
@@ -282,41 +371,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (newsletterForm) {
+        const newsletterStatus = document.getElementById('newsletterStatus');
+        const errorMessage = 'Not subscribed. Please check your email address, or email ' + EMAIL_LINK + '.';
+        watchFields(newsletterForm);
+
         newsletterForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            clearStatus(newsletterStatus);
+
+            const firstInvalid = validateForm(this);
+            if (firstInvalid) {
+                showStatus(newsletterStatus, 'error', errorMessage);
+                firstInvalid.focus();
+                return;
+            }
 
             const submitBtn = this.querySelector('.btn');
             const originalText = submitBtn.textContent;
-
             submitBtn.textContent = 'Subscribing...';
             submitBtn.disabled = true;
 
             try {
-                const formData = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    submitBtn.textContent = 'Subscribed!';
-                    this.reset();
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }, 3000);
-                } else {
-                    throw new Error('Subscription failed');
-                }
+                await postForm(this);
+                showStatus(newsletterStatus, 'success', 'Subscribed. Thank you, you\'re on the list.');
+                this.reset();
             } catch (error) {
-                submitBtn.textContent = 'Error - Try Again';
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                }, 3000);
+                showStatus(newsletterStatus, 'error', errorMessage);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             }
         });
     }

@@ -567,7 +567,7 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdkgkjwk" method="POST">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdkgkjwk" method="POST" novalidate>
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" required placeholder="John Smith">
@@ -609,7 +609,7 @@
 
                     <button type="submit" class="btn btn-orange btn-submit">Send Message</button>
 
-                    <div class="form-status" id="formStatus"></div>
+                    <div class="form-status" id="formStatus" aria-live="polite"></div>
                 </form>
             </div>
         </div>
@@ -622,10 +622,11 @@
                 <p>Get tips on school marketing, web design insights, and virtual tour best practices delivered to your
                     inbox.</p>
             </div>
-            <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/xdkgkjwk" method="POST">
-                <input type="email" name="email" placeholder="Your email address" required>
+            <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/xdkgkjwk" method="POST" novalidate>
+                <input type="email" id="newsletter-email" name="email" placeholder="Your email address" aria-label="Email address" required>
                 <input type="hidden" name="_subject" value="Newsletter Subscription">
                 <button type="submit" class="btn btn-orange">Subscribe</button>
+                <div class="form-status" id="newsletterStatus" aria-live="polite"></div>
             </form>
         </div>
     </section>
